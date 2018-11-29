@@ -1,6 +1,6 @@
 # Project Jurassic Run
 
-###### High Score
+## High Score
 
 When running the program, press spacebar to start score.
 
