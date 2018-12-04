@@ -30,6 +30,7 @@ void drawString (void * font, std::string *s, float x, float y){
         glutBitmapCharacter (font, s->at(i));
 }
 
+//used to update screen for timer and graphics
 void App::idle(){
     glutPostRedisplay();
     score->setCurrScore(isGameOn);
@@ -66,20 +67,26 @@ void App::keyDown(unsigned char key, float x, float y){
         //explosion->playOnce();
         
         if(isGameOn == false){
+            
+            //reset and start timer
             score->timer->reset();
             score->timer->start();
         }
         
+        //turn on game
         isGameOn = true;
     }
     
     if(key == 'q'){
         if(isGameOn == true){
+            
+            //stop timer and manipulate score accordingly
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
         }
         
+        //turn off game
         isGameOn = false;
     }
 }

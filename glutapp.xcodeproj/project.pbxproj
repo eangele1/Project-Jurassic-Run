@@ -285,6 +285,7 @@
 		173FEF091AA63A07006CCB85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = SOIL/includes;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -299,6 +300,7 @@
 		173FEF0A1AA63A07006CCB85 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = SOIL/includes;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
