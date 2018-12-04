@@ -31,6 +31,7 @@ void drawString (void * font, std::string *s, float x, float y){
 }
 
 void App::idle(){
+    glutPostRedisplay();
     score->setCurrScore(isGameOn);
     currScore = score->getCurrScore();
 }
@@ -85,6 +86,7 @@ void App::keyDown(unsigned char key, float x, float y){
 
 App::~App(){
     std::cout << "Exiting..." << std::endl;
+    delete score;
     //delete explosion;
     //delete fastExplosion;
 }
