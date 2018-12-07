@@ -42,10 +42,10 @@ void App::draw() {
     //fastExplosion->draw(0.15);
     
     // Set background color to black
-    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     
     //gives the text the color white
-    glColor3f(0, 0, 0);
+    glColor3f(1, 1, 1);
     
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &hi, .1, .75);
     
