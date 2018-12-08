@@ -22,6 +22,9 @@ std::string curr = "CURR";
 std::string hiScore;
 std::string currScore;
 
+int scoreNum = 0;
+std::string::size_type sz;
+
 
 bool isGameOn = false;
 
@@ -72,8 +75,11 @@ void App::draw() {
     
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &currScore, .72, .75);
     
+    scoreNum = std::stoi(currScore, &sz);
     
-
+    if(scoreNum > 40){
+        
+    }
     
     background->Background();
 }
