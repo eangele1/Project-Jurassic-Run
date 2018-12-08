@@ -22,9 +22,7 @@ std::string curr = "CURR";
 std::string hiScore;
 std::string currScore;
 
-int scoreNum = 0;
-std::string::size_type sz;
-
+long long scoreNum;
 
 bool isGameOn = false;
 
@@ -53,6 +51,10 @@ void App::idle(){
     glutPostRedisplay();
     score->setCurrScore(isGameOn);
     currScore = score->getCurrScore();
+    
+    scoreNum = score->timer->count<std::chrono::microseconds>();
+    
+    scoreNum /= 100000;
 }
 
 void App::draw() {
@@ -74,8 +76,6 @@ void App::draw() {
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &hiScore, .22, .75);
     
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &currScore, .72, .75);
-    
-    scoreNum = std::stoi(currScore, &sz);
     
     if(scoreNum > 40){
         
