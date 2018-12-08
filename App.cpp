@@ -6,8 +6,10 @@
 #include <iomanip>
 #include <sstream>
 #include "Score.h"
+#include "Environment.h"
 
 Score* score = new Score();
+Environment* background = new Environment();
 
 std::string hi = "HI";
 std::string curr = "CURR";
@@ -43,7 +45,7 @@ void App::draw() {
     //explosion->draw(0.15);
     //fastExplosion->draw(0.15);
     
-    Dino->draw(0.10);
+    
     //Part that are comented out
     // Set background color to black
     glClearColor(0.0, 0.0, 0.0, 0.0);
@@ -58,6 +60,10 @@ void App::draw() {
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &hiScore, .22, .75);
     
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &currScore, .72, .75);
+    
+    Dino->draw(0.10);
+    
+    background->drawEnvironment();
 }
 
 void App::keyDown(unsigned char key, float x, float y){

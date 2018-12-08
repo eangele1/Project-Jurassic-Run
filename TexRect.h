@@ -23,6 +23,9 @@ public:
     TexRect(const char*, float, float, float, float);
     
     void draw(float z) const;
+    
+    void drawR(float z) const;
+
 };
 
 #endif
