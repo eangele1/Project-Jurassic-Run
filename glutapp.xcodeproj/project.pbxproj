@@ -19,6 +19,7 @@
 		17609DCB219C9C3E00F85383 /* AnimatedRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17609DC9219C9C3E00F85383 /* AnimatedRect.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		17609DCE219CA02D00F85383 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17609DCC219CA02D00F85383 /* Timer.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		CE3D372A21AFD38A0088A15D /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE3D372921AFD38A0088A15D /* Score.cpp */; };
+		D772E9AC21BB6483007E880F /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D772E9AA21BB6483007E880F /* Environment.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,8 @@
 		CE3D372821AFD38A0088A15D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		CE3D372921AFD38A0088A15D /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
 		CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinosaurFunctions.h; sourceTree = "<group>"; };
+		D772E9AA21BB6483007E880F /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Environment.cpp; path = "../../../Desktop/Project-Jurassic-Run/Environment.cpp"; sourceTree = "<group>"; };
+		D772E9AB21BB6483007E880F /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Environment.h; path = "../../../Desktop/Project-Jurassic-Run/Environment.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				CE3D372821AFD38A0088A15D /* Score.h */,
 				CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */,
 				90EB8BA721BB5C9F006CD970 /* DinosaurFunctions.h */,
+				D772E9AA21BB6483007E880F /* Environment.cpp */,
+				D772E9AB21BB6483007E880F /* Environment.h */,
 				173FEF021AA63A07006CCB85 /* Products */,
 				17609DBA219C077D00F85383 /* Frameworks */,
 			);
@@ -178,6 +183,7 @@
 				17609DB8219BF07300F85383 /* App.cpp in Sources */,
 				173FEF0C1AA63AC4006CCB85 /* app_main.cpp in Sources */,
 				17609DCB219C9C3E00F85383 /* AnimatedRect.cpp in Sources */,
+				D772E9AC21BB6483007E880F /* Environment.cpp in Sources */,
 				1727D28C219145520048CB99 /* GlutApp.cpp in Sources */,
 				17609DC2219C098400F85383 /* Rect.cpp in Sources */,
 				17609DCE219CA02D00F85383 /* Timer.cpp in Sources */,
