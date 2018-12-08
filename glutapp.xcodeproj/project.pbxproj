@@ -52,6 +52,7 @@
 		17609DCA219C9C3E00F85383 /* AnimatedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedRect.h; sourceTree = "<group>"; };
 		17609DCC219CA02D00F85383 /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		17609DCD219CA02D00F85383 /* Timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		90ACB89C21B6FFC600425198 /* DinosaurFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DinosaurFunctions.h; sourceTree = "<group>"; };
 		CE3D372721AFD38A0088A15D /* cxxtimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cxxtimer.h; sourceTree = "<group>"; };
 		CE3D372821AFD38A0088A15D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		CE3D372921AFD38A0088A15D /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 				1727D28B219145520048CB99 /* GlutApp.h */,
 				1727D28A219145520048CB99 /* GlutApp.cpp */,
 				17609DCD219CA02D00F85383 /* Timer.h */,
+				90ACB89C21B6FFC600425198 /* DinosaurFunctions.h */,
 				17609DCC219CA02D00F85383 /* Timer.cpp */,
 				17609DC9219C9C3E00F85383 /* AnimatedRect.cpp */,
 				17609DCA219C9C3E00F85383 /* AnimatedRect.h */,

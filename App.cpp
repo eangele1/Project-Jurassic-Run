@@ -18,7 +18,9 @@ bool isGameOn = false;
 
 App::App(int argc, char** argv): GlutApp(argc, argv){
     //explosion = new AnimatedRect("fireball.bmp", 6, 6, 100, -0.5, 0.5, 0.5, 0.5);
-    //fastExplosion = new AnimatedRect("fireball.bmp", 6, 6, 10, 0.5, 0.5, 0.5, 0.5);
+   // fastExplosion = new AnimatedRect("fireball.bmp", 6, 6, 10, 0.5, 0.5, 0.5, 0.5);
+    //This is for explosion
+    Dino = new AnimatedRect("dino.png", 6, 6, 100, -0.8, -0.3, 0.1, 0.1);
     hiScore = score->getHighScore();
 }
 
@@ -41,6 +43,8 @@ void App::draw() {
     //explosion->draw(0.15);
     //fastExplosion->draw(0.15);
     
+    Dino->draw(0.10);
+    //Part that are comented out
     // Set background color to black
     glClearColor(1.0, 1.0, 1.0, 1.0);
     
@@ -65,6 +69,7 @@ void App::keyDown(unsigned char key, float x, float y){
     if (key == ' '){
         //fastExplosion->playOnce();
         //explosion->playOnce();
+        Dino->playOnce();
         
         if(isGameOn == false){
             
@@ -94,6 +99,7 @@ void App::keyDown(unsigned char key, float x, float y){
 App::~App(){
     std::cout << "Exiting..." << std::endl;
     delete score;
+    delete Dino;
     //delete explosion;
     //delete fastExplosion;
 }

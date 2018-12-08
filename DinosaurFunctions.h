@@ -3,6 +3,7 @@
 #include <iostream>
 #include "DinausarFunctions.cpp"
 #include <vector>
+#include "App.cpp"
 
 class Moves
 {
