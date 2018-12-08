@@ -92,12 +92,12 @@ public:
     /**
      * Start/resume the timer.
      */
-    void start();
+    bool start();
 
     /**
      * Stop/pause the timer.
      */
-    void stop();
+    bool stop();
 
     /**
      * Reset the timer.
@@ -120,6 +120,7 @@ public:
 private:
 
     bool started_;
+    bool running;
     bool paused_;
     std::chrono::steady_clock::time_point reference_;
     std::chrono::duration<long double> accumulated_;
@@ -129,7 +130,7 @@ private:
 
 
 inline cxxtimer::Timer::Timer(bool start) :
-        started_(false), paused_(false),
+        started_(false), paused_(false), running(false),
         reference_(std::chrono::steady_clock::now()),
         accumulated_(std::chrono::duration<long double>(0)) {
     if (start) {
@@ -137,24 +138,32 @@ inline cxxtimer::Timer::Timer(bool start) :
     }
 }
 
-inline void cxxtimer::Timer::start() {
+inline bool cxxtimer::Timer::start() {
+    //bool condition;
     if (!started_) {
         started_ = true;
         paused_ = false;
         accumulated_ = std::chrono::duration<long double>(0);
         reference_ = std::chrono::steady_clock::now();
+        running = true;
     } else if (paused_) {
+        running = false;
         reference_ = std::chrono::steady_clock::now();
         paused_ = false;
     }
+    return running;
 }
 
-inline void cxxtimer::Timer::stop() {
+
+inline bool cxxtimer::Timer::stop() {
     if (started_ && !paused_) {
         std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
         accumulated_ = accumulated_ + std::chrono::duration_cast< std::chrono::duration<long double> >(now - reference_);
         paused_ = true;
+        running = false;
     }
+    return running;
+    
 }
 
 inline void cxxtimer::Timer::reset() {

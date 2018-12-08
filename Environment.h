@@ -13,27 +13,30 @@
 #include "Rect.h"
 #include <stdio.h>
 #include "TexRect.h"
+#include "cxxtimer.h"
+
 
 class Environment{
 private:
-    float MoveX;
+    float MoveX = 3;
 public:
-    Environment(){
-        
-    }
     
-    void update(){          //return new position later
-        MoveX = 0;
-    }
+    cxxtimer::Timer* timer = new cxxtimer::Timer();
+    
+    Environment(){}
+
     void setmovex(float X){
         MoveX = X;
     }
     float getMoveX(){
         return MoveX;
     }
+    
     void drawEnvironment();
     
-    void Background(bool isGameOn);
+    bool GameUpdate();
+    
+    void Background();
     
     ~Environment(){
         
