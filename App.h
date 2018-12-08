@@ -9,6 +9,8 @@ class App: public GlutApp {
     AnimatedRect* explosion;
     AnimatedRect* fastExplosion;
     AnimatedRect* Dino;
+    AnimatedRect* Bird;
+    AnimatedRect* Cactus;
     
     
 public:

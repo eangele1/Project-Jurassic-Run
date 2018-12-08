@@ -29,6 +29,8 @@ public:
 
     void crouch();
     void jump();
+    void DrawDino();
+    void DrawBird();
     
     //Destructor
     ~Moves(){}
