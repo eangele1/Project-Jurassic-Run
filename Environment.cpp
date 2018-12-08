@@ -7,9 +7,10 @@
 //
 
 #include "Environment.h"
+#include "Score.h"
+#include "cxxtimer.h"
 #include "TexRect.h"
-
-
+#include <chrono>
 
 
 void Environment::drawEnvironment(){
@@ -18,11 +19,35 @@ void Environment::drawEnvironment(){
 //    TextRect *cacti = new TexRect(
 }
 
+bool Environment::GameUpdate(){
+    bool running = false;
+    
+    if(timer->start() == true)
+        running = true;
+    
+    if(timer->stop() == true)
+        running = false;
+    
+    return running;
+    
+        // use isGameOn from App.cpp
+}
 
-void Environment::Background(bool isGameOn){
-    while(isGameOn == true){
+
+void Environment::Background(){
+    float decrement = 0.0;
+    
+    while(GameUpdate() == true){
+        
+        //decrement -= timer->count<std::chrono::microseconds>()/ 10;
+        decrement += 0.1;
+        setmovex(decrement);
+        
+        TexRect *background = new TexRect("Desert.png",1+getMoveX(),1,2, 2);
+        background->drawR(0);
         //use milliseconds from timer to increment position
         //once x reaches a certain number, redraw
-        
+
     }
+    
 }

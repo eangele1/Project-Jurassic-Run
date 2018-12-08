@@ -7,6 +7,7 @@
 #include <sstream>
 #include "Score.h"
 #include "Environment.h"
+#include "App.h"
 
 Score* score = new Score();
 Environment* background = new Environment();
@@ -17,6 +18,7 @@ std::string hiScore;
 std::string currScore;
 
 bool isGameOn = false;
+
 
 App::App(int argc, char** argv): GlutApp(argc, argv){
     //explosion = new AnimatedRect("fireball.bmp", 6, 6, 100, -0.5, 0.5, 0.5, 0.5);
@@ -63,7 +65,7 @@ void App::draw() {
     
     Dino->draw(0.10);
     
-    background->drawEnvironment();
+    background->Background();
 }
 
 void App::keyDown(unsigned char key, float x, float y){
@@ -82,6 +84,8 @@ void App::keyDown(unsigned char key, float x, float y){
             //reset and start timer
             score->timer->reset();
             score->timer->start();
+            background->timer->reset();
+            background->timer->start();
         }
         
         //turn on game
@@ -92,6 +96,7 @@ void App::keyDown(unsigned char key, float x, float y){
         if(isGameOn == true){
             
             //stop timer and manipulate score accordingly
+            background->timer->stop();
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();

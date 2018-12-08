@@ -9,6 +9,8 @@ class App: public GlutApp {
     AnimatedRect* explosion;
     AnimatedRect* fastExplosion;
     AnimatedRect* Dino;
+    bool isGameOn;
+    
     
     
 public:
@@ -19,6 +21,14 @@ public:
     void idle();
     
     void keyDown(unsigned char key, float x, float y);
+    
+    void setGameOn(bool progress){
+        isGameOn = progress;
+    }
+    
+    bool getGameOn(){
+        return isGameOn;
+    }
     
     ~App();
     
