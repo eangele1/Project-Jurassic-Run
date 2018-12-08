@@ -7,15 +7,21 @@
 #include <sstream>
 #include "Score.h"
 #include "Environment.h"
+
+#include "DinosaurFunctions.h"
+
 #include "App.h"
+
 
 Score* score = new Score();
 Environment* background = new Environment();
+Moves* FunctionsDino = new Moves();
 
 std::string hi = "HI";
 std::string curr = "CURR";
 std::string hiScore;
 std::string currScore;
+
 
 bool isGameOn = false;
 
@@ -24,7 +30,10 @@ App::App(int argc, char** argv): GlutApp(argc, argv){
     //explosion = new AnimatedRect("fireball.bmp", 6, 6, 100, -0.5, 0.5, 0.5, 0.5);
    // fastExplosion = new AnimatedRect("fireball.bmp", 6, 6, 10, 0.5, 0.5, 0.5, 0.5);
     //This is for explosion
-    Dino = new AnimatedRect("dino.png", 6, 6, 100, -0.8, -0.3, 0.1, 0.1);
+    
+    //Cactus = new AnimatedRect("cactus.png", 5, 5, 100, -.7, -0.1, .2, .2 );
+    
+    
     hiScore = score->getHighScore();
 }
 
@@ -63,7 +72,8 @@ void App::draw() {
     
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &currScore, .72, .75);
     
-    Dino->draw(0.10);
+    
+
     
     background->Background();
 }
@@ -77,9 +87,12 @@ void App::keyDown(unsigned char key, float x, float y){
     if (key == ' '){
         //fastExplosion->playOnce();
         //explosion->playOnce();
-        Dino->playOnce();
         
-        if(isGameOn == false){
+        FunctionsDino->jump();
+        
+        
+        if(isGameOn == false)
+        {
             
             //reset and start timer
             score->timer->reset();
@@ -100,6 +113,9 @@ void App::keyDown(unsigned char key, float x, float y){
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
+            
+            //The Dinosaur start appearing
+            //FunctionsDino->Playloop();
         }
         
         //turn off game
@@ -110,7 +126,7 @@ void App::keyDown(unsigned char key, float x, float y){
 App::~App(){
     std::cout << "Exiting..." << std::endl;
     delete score;
-    delete Dino;
+    delete FunctionsDino;
     //delete explosion;
     //delete fastExplosion;
 }
