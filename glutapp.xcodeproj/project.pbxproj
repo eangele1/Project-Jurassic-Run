@@ -53,7 +53,6 @@
 		17609DCA219C9C3E00F85383 /* AnimatedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedRect.h; sourceTree = "<group>"; };
 		17609DCC219CA02D00F85383 /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		17609DCD219CA02D00F85383 /* Timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
-		90EB8BA721BB5C9F006CD970 /* DinosaurFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DinosaurFunctions.h; path = ../../../Desktop/DinosaurFunctions.h; sourceTree = "<group>"; };
 		CE3D372721AFD38A0088A15D /* cxxtimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cxxtimer.h; sourceTree = "<group>"; };
 		CE3D372821AFD38A0088A15D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		CE3D372921AFD38A0088A15D /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
@@ -99,7 +98,6 @@
 				CE3D372921AFD38A0088A15D /* Score.cpp */,
 				CE3D372821AFD38A0088A15D /* Score.h */,
 				CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */,
-				90EB8BA721BB5C9F006CD970 /* DinosaurFunctions.h */,
 				D772E9AA21BB6483007E880F /* Environment.cpp */,
 				D772E9AB21BB6483007E880F /* Environment.h */,
 				173FEF021AA63A07006CCB85 /* Products */,
