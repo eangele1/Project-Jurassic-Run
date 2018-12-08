@@ -20,6 +20,7 @@
 		17609DCE219CA02D00F85383 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17609DCC219CA02D00F85383 /* Timer.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		90EB8BAA21BB68FF006CD970 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EB8BA921BB68FF006CD970 /* Environment.cpp */; };
 		CE3D372A21AFD38A0088A15D /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE3D372921AFD38A0088A15D /* Score.cpp */; };
+		CEE0671921BC7E23009AEF57 /* DinosaurFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0671821BC7E23009AEF57 /* DinosaurFunctions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,7 @@
 		CE3D372821AFD38A0088A15D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		CE3D372921AFD38A0088A15D /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
 		CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinosaurFunctions.h; sourceTree = "<group>"; };
+		CEE0671821BC7E23009AEF57 /* DinosaurFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DinosaurFunctions.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				CE3D372921AFD38A0088A15D /* Score.cpp */,
 				CE3D372821AFD38A0088A15D /* Score.h */,
 				CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */,
+				CEE0671821BC7E23009AEF57 /* DinosaurFunctions.cpp */,
 				90EB8BA921BB68FF006CD970 /* Environment.cpp */,
 				90EB8BA821BB68E3006CD970 /* Environment.h */,
 				173FEF021AA63A07006CCB85 /* Products */,
@@ -182,6 +185,7 @@
 				173FEF0C1AA63AC4006CCB85 /* app_main.cpp in Sources */,
 				17609DCB219C9C3E00F85383 /* AnimatedRect.cpp in Sources */,
 				1727D28C219145520048CB99 /* GlutApp.cpp in Sources */,
+				CEE0671921BC7E23009AEF57 /* DinosaurFunctions.cpp in Sources */,
 				17609DC2219C098400F85383 /* Rect.cpp in Sources */,
 				17609DCE219CA02D00F85383 /* Timer.cpp in Sources */,
 				90EB8BAA21BB68FF006CD970 /* Environment.cpp in Sources */,
