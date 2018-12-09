@@ -31,11 +31,14 @@ void Moves::jump(){
 }
 void Moves:: DrawDino()
 {
-  AnimatedRect* Dino = new AnimatedRect("dino.png", 5, 5, 100, -0.7, -0.1, 0.2, 0.2);
-    Dino->draw(.15); 
+  AnimatedRect* Dino = new AnimatedRect("dino.png", 1, 5, 100, -0.7, -0.1, 0.2, 0.2);
+    Dino->draw(.15);
+    Dino->playLoop();
+    
 }
-void Moves:: DrawBird()
+/*void Moves:: DrawBird()
 {
   AnimatedRect*  Bird = new AnimatedRect("bird.png", 5, 5, 100, -.7, -.1, .2, .2);
     Bird->draw(.15);
 }
+*/

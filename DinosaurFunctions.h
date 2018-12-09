@@ -30,7 +30,7 @@ public:
     void crouch();
     void jump();
     void DrawDino();
-    void DrawBird();
+    //void DrawBird();
     
     //Destructor
     ~Moves(){}

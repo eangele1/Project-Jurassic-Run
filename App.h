@@ -8,7 +8,7 @@
 class App: public GlutApp {
     AnimatedRect* explosion;
     AnimatedRect* fastExplosion;
-  
+    AnimatedRect* Bird;
     bool isGameOn;
     
     

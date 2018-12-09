@@ -9,7 +9,7 @@
 #include "Environment.h"
 
 #include "DinosaurFunctions.h"
-
+#include "TexRect.h"
 #include "App.h"
 
 
@@ -31,9 +31,6 @@ App::App(int argc, char** argv): GlutApp(argc, argv){
     //explosion = new AnimatedRect("fireball.bmp", 6, 6, 100, -0.5, 0.5, 0.5, 0.5);
    // fastExplosion = new AnimatedRect("fireball.bmp", 6, 6, 10, 0.5, 0.5, 0.5, 0.5);
     //This is for explosion
-    
-    //Cactus = new AnimatedRect("cactus.png", 5, 5, 100, -.7, -0.1, .2, .2 );
-    
     
     hiScore = score->getHighScore();
 }
@@ -78,8 +75,17 @@ void App::draw() {
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &currScore, .72, .75);
     
     if(scoreNum > 40){
+        TexRect* Cactus = new TexRect("cactus.png", -.7, -0.1, .2, .2 );
+        Cactus->draw(0);
+        //Randomizer
         
     }
+    if(scoreNum > 500)
+    {
+        Bird = new AnimatedRect("Bird.png", 1, 2, 100, -.5, -.2, .5, .5);
+        Bird->draw(.15);
+    }
+    
     
     background->Background();
 }
@@ -93,6 +99,8 @@ void App::keyDown(unsigned char key, float x, float y){
     if (key == ' '){
         //fastExplosion->playOnce();
         //explosion->playOnce();
+        
+        FunctionsDino->DrawDino();
         
         FunctionsDino->jump();
         
@@ -122,6 +130,7 @@ void App::keyDown(unsigned char key, float x, float y){
             
             //The Dinosaur start appearing
             //FunctionsDino->Playloop();
+            
         }
         
         //turn off game
