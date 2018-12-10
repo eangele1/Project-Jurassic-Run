@@ -14,12 +14,12 @@
 #include <SOIL.h>
 #endif
 
+
 class TexRect: public Rect {
 protected:
     GLuint texture_id;
     
 public:
-    
     TexRect(const char*, float, float, float, float);
     
     void draw(float z) const;

@@ -335,17 +335,18 @@ void App::keyDown(unsigned char key, float x, float y){
             i = 0;
             
             isCrouched = false;
+            end = false;
+            isDead = false;
+            DinoJump = true;
             
             score->timer->reset();
             score->timer->start();
             
-            end = false;
             obsticle->Bird->setX(1);
             obsticle->Cactus->setX(1);
-            isDead = false;
+            
             obsticle->Bird->playLoop();
             Dino->DinoRun->playLoop();
-            DinoJump = true;
         }
         
         isGameOn = true;
