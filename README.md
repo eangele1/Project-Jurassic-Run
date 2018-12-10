@@ -1,7 +1,9 @@
 # Project Jurassic Run
 
-## High Score
+When running the program, press spacebar to start the game.
 
-When running the program, press spacebar to start score.
+Requires SFML framework to be installed in order to build the game.
 
-Press "Q" to stop score. Current score will compare to high score and overwrite if high score < current score.
+To install SFML, open the project file. Open the included folder with the SFML framworks, select all and drag and drop into the frameworks folder inside the project.
+
+To build the game, cd the folder of wherever this project is in terminal, then simply type in "make".
