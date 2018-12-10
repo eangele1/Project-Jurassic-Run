@@ -32,6 +32,9 @@ bool end = false;
 
 int i = 0;
 
+int controllerFlag = 1;
+int controllerSoundHandler = 0;
+
 long long scoreNum;
 
 //Instantiate a new audio file
@@ -46,6 +49,7 @@ sf::Sound* sound2 = new sf::Sound();
 int playerPort = 0;
 
 Score* score = new Score();
+Score* runningScore = new Score();
 
 Dinosaur* Dino = new Dinosaur();
 Background* background = new Background();
@@ -151,12 +155,86 @@ void drawString (void * font, std::string *s, float x, float y){
 }
 
 void App::idle(){
+    
+    sf::Joystick::update();
+    
+    float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+    
+    if(sf::Joystick::isButtonPressed(playerPort, 1) && controllerSoundHandler == 0){
+        if(isGameOn == true){
+            DinoJump = true;
+            sound2->play();
+            controllerSoundHandler = 1;
+        }
+    }
+    else if(!sf::Joystick::isButtonPressed(playerPort, 1) && controllerSoundHandler == 1){
+        controllerSoundHandler = 0;
+    }
+    
+    if(y == 100){
+        if(isGameOn == true && controllerFlag == 1){
+            isCrouched = true;
+            Dino->fallRate = 0.003;
+            Dino->crouch(Dino);
+            controllerFlag = 0;
+        }
+    }
+    else{
+        if(isGameOn == true && controllerFlag == 0){
+            isCrouched = false;
+            Dino->fallRate = 0.0015;
+            Dino->crouchUp(Dino);
+            controllerFlag = 1;
+        }
+    }
+    
+    if(sf::Joystick::isButtonPressed(playerPort, 9)){
+        
+        if(isGameOn == false){
+            //stops the audio file
+            music->stop();
+            
+            //if music file not found, will throw error in console.
+            if (!music->openFromFile("audio/Run Theme.wav")){
+                std::cout<<"Audio file not found!"<<std::endl;
+            }
+            
+            //makes audio loop (only loops from beginning to end, not at loop points)
+            music->setLoop(true);
+            
+            //plays the audio file
+            music->play();
+            
+            i = 0;
+            
+            isCrouched = false;
+            end = false;
+            isDead = false;
+            DinoJump = true;
+            
+            score->timer->reset();
+            score->timer->start();
+            
+            runningScore->timer->reset();
+            runningScore->timer->start();
+            
+            obsticle->Bird->setX(1);
+            obsticle->Cactus->setX(1);
+            
+            obsticle->Bird->playLoop();
+            Dino->DinoRun->playLoop();
+        }
+        
+        isGameOn = true;
+        
+    }
+    
     glutPostRedisplay();
     
     score->setCurrScore(isGameOn);
     currScore = score->getCurrScore();
     
-    scoreNum = score->timer->count<std::chrono::microseconds>();
+    scoreNum = runningScore->timer->count<std::chrono::microseconds>();
     
     scoreNum /= 100000;
     
@@ -173,30 +251,26 @@ void App::idle(){
             sound1->play();
         }
         
-        if(scoreNum % 200 == 0 && scoreNum != 0 && i < 1){
+        if(scoreNum % 200 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 1){
             i = 1;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
         }
-        if(scoreNum % 400 == 0 && scoreNum != 0 && i < 2){
+        else if(scoreNum % 400 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 2){
             i = 2;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
         }
-        if(scoreNum % 600 == 0 && scoreNum != 0 && i < 3){
+        else if(scoreNum % 600 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 3){
             i = 3;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
         }
-        if(scoreNum % 700 == 0 && scoreNum != 0 && i < 4){
-            i++;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+        else if(scoreNum % 800 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 4){
+            i = 4;
         }
-        else if(scoreNum % 1000 == 0 && scoreNum != 0){
+        else if(scoreNum % 1000 == 0 && scoreNum != 0 && i < 5 && i != 0){
             i = 0;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+        }
+        
+        if(scoreNum == 1000){
+            runningScore->timer->stop();
+            runningScore->timer->reset();
+            runningScore->timer->start();
         }
         
         if(scoreNum > 30){
@@ -215,8 +289,8 @@ void App::idle(){
             
         }
         
-        obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music);
-        obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music);
+        obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore);
+        obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore);
         
     }
 
@@ -329,9 +403,6 @@ void App::keyDown(unsigned char key, float x, float y){
             //plays the audio file
             music->play();
             
-            obsticle->advanceRate = 0.001;
-            background->advanceRate = 0.001;
-            
             i = 0;
             
             isCrouched = false;
@@ -341,6 +412,9 @@ void App::keyDown(unsigned char key, float x, float y){
             
             score->timer->reset();
             score->timer->start();
+            
+            runningScore->timer->reset();
+            runningScore->timer->start();
             
             obsticle->Bird->setX(1);
             obsticle->Cactus->setX(1);

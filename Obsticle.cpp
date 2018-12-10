@@ -18,7 +18,7 @@ void Obsticle::cactusAdvance(Obsticle* obsticle){
     obsticle->Cactus->setX(obsticle->Cactus->getX() - advanceRate);
 }
 
-void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music){
+void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore){
     
     if(Dino->DinoRun->animating == false){
         //DO NOTHING!!!
@@ -32,6 +32,7 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
             
+            runningScore->timer->stop();
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
@@ -68,6 +69,7 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
             
+            runningScore->timer->stop();
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
@@ -93,7 +95,7 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
     }
 }
 
-void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music){
+void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore){
     
     if(Dino->DinoRun->animating == false){
         //DO NOTHING!!!
@@ -107,6 +109,7 @@ void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
             
+            runningScore->timer->stop();
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
@@ -143,6 +146,7 @@ void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
             
+            runningScore->timer->stop();
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
