@@ -44,7 +44,6 @@ public:
     void setB(float);
     
     bool contains(float, float) const;
-
     
     void redrawScene();
     

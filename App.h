@@ -6,11 +6,9 @@
 
 
 class App: public GlutApp {
-    AnimatedRect* explosion;
-    AnimatedRect* fastExplosion;
-    AnimatedRect* Bird;
-    bool isGameOn;
     
+    AnimatedRect* Title;
+    AnimatedRect* gameover;
     
 public:
     App(int argc, char** argv);
@@ -21,13 +19,7 @@ public:
     
     void keyDown(unsigned char key, float x, float y);
     
-    void setGameOn(bool progress){
-        isGameOn = progress;
-    }
-    
-    bool getGameOn(){
-        return isGameOn;
-    }
+    void keyUp(unsigned char key, float x, float y);
     
     ~App();
     

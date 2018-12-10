@@ -3,7 +3,6 @@
 
 AnimatedRect::AnimatedRect (const char* map_filename, int rows, int cols, int rate, float x=0, float y=0, float w=0.5, float h=0.5): TexRect(map_filename, x, y, w, h){
     
-    
     glClearColor (0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
@@ -135,12 +134,10 @@ void AnimatedRect::action(){
     if (animating){
         if (loop){
             advance();
-            redrawScene();
         }
         else {
             if (!done()){
                 advance();
-                redrawScene();
             }
         }
     }

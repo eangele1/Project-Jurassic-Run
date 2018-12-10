@@ -17,10 +17,17 @@
 		17609DC5219C0DE800F85383 /* TexRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17609DC3219C0DE800F85383 /* TexRect.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		17609DC7219C7B5700F85383 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17609DC6219C7B5700F85383 /* CoreFoundation.framework */; };
 		17609DCB219C9C3E00F85383 /* AnimatedRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17609DC9219C9C3E00F85383 /* AnimatedRect.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
-		17609DCE219CA02D00F85383 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17609DCC219CA02D00F85383 /* Timer.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
-		90EB8BAA21BB68FF006CD970 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EB8BA921BB68FF006CD970 /* Environment.cpp */; };
-		CE3D372A21AFD38A0088A15D /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE3D372921AFD38A0088A15D /* Score.cpp */; };
-		CEE0671921BC7E23009AEF57 /* DinosaurFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0671821BC7E23009AEF57 /* DinosaurFunctions.cpp */; };
+		CE0BAFA921BE8EEE0077C0D7 /* sfml-graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BAFA321BE8EEE0077C0D7 /* sfml-graphics.framework */; };
+		CE0BAFAA21BE8EEE0077C0D7 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BAFA421BE8EEE0077C0D7 /* sfml-system.framework */; };
+		CE0BAFAB21BE8EEE0077C0D7 /* SFML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BAFA521BE8EEE0077C0D7 /* SFML.framework */; };
+		CE0BAFAC21BE8EEE0077C0D7 /* sfml-window.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BAFA621BE8EEE0077C0D7 /* sfml-window.framework */; };
+		CE0BAFAD21BE8EEE0077C0D7 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BAFA721BE8EEE0077C0D7 /* sfml-network.framework */; };
+		CE0BAFAE21BE8EEE0077C0D7 /* sfml-audio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BAFA821BE8EEE0077C0D7 /* sfml-audio.framework */; };
+		CE72D0AE21BE31FA00CD7E60 /* Dino.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE72D0AD21BE31FA00CD7E60 /* Dino.cpp */; };
+		CE72D0B121BE3AC300CD7E60 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE72D0B021BE3AC300CD7E60 /* Environment.cpp */; };
+		CE72D0B421BE3DB500CD7E60 /* Obsticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE72D0B321BE3DB500CD7E60 /* Obsticle.cpp */; };
+		CE72D0B821BE431B00CD7E60 /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE72D0B721BE431B00CD7E60 /* Score.cpp */; };
+		CE72D0BB21BE877C00CD7E60 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE72D0B921BE877C00CD7E60 /* Timer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,15 +59,23 @@
 		17609DC6219C7B5700F85383 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		17609DC9219C9C3E00F85383 /* AnimatedRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedRect.cpp; sourceTree = "<group>"; };
 		17609DCA219C9C3E00F85383 /* AnimatedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedRect.h; sourceTree = "<group>"; };
-		17609DCC219CA02D00F85383 /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
-		17609DCD219CA02D00F85383 /* Timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
-		90EB8BA821BB68E3006CD970 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
-		90EB8BA921BB68FF006CD970 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
-		CE3D372721AFD38A0088A15D /* cxxtimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cxxtimer.h; sourceTree = "<group>"; };
-		CE3D372821AFD38A0088A15D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
-		CE3D372921AFD38A0088A15D /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
-		CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinosaurFunctions.h; sourceTree = "<group>"; };
-		CEE0671821BC7E23009AEF57 /* DinosaurFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DinosaurFunctions.cpp; sourceTree = "<group>"; };
+		CE0BAFA321BE8EEE0077C0D7 /* sfml-graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-graphics.framework"; path = "SFML Frameworks/sfml-graphics.framework"; sourceTree = "<group>"; };
+		CE0BAFA421BE8EEE0077C0D7 /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-system.framework"; path = "SFML Frameworks/sfml-system.framework"; sourceTree = "<group>"; };
+		CE0BAFA521BE8EEE0077C0D7 /* SFML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFML.framework; path = "SFML Frameworks/SFML.framework"; sourceTree = "<group>"; };
+		CE0BAFA621BE8EEE0077C0D7 /* sfml-window.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-window.framework"; path = "SFML Frameworks/sfml-window.framework"; sourceTree = "<group>"; };
+		CE0BAFA721BE8EEE0077C0D7 /* sfml-network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-network.framework"; path = "SFML Frameworks/sfml-network.framework"; sourceTree = "<group>"; };
+		CE0BAFA821BE8EEE0077C0D7 /* sfml-audio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-audio.framework"; path = "SFML Frameworks/sfml-audio.framework"; sourceTree = "<group>"; };
+		CE72D0AC21BE31FA00CD7E60 /* Dino.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dino.h; sourceTree = "<group>"; };
+		CE72D0AD21BE31FA00CD7E60 /* Dino.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dino.cpp; sourceTree = "<group>"; };
+		CE72D0AF21BE3AC300CD7E60 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
+		CE72D0B021BE3AC300CD7E60 /* Environment.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
+		CE72D0B221BE3DB500CD7E60 /* Obsticle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Obsticle.h; sourceTree = "<group>"; };
+		CE72D0B321BE3DB500CD7E60 /* Obsticle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Obsticle.cpp; sourceTree = "<group>"; };
+		CE72D0B521BE428700CD7E60 /* cxxtimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cxxtimer.h; sourceTree = "<group>"; };
+		CE72D0B621BE431B00CD7E60 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		CE72D0B721BE431B00CD7E60 /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
+		CE72D0B921BE877C00CD7E60 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Timer.cpp; path = "../../../Documents/GitHub/Project-Jurassic-Run/Timer.cpp"; sourceTree = "<group>"; };
+		CE72D0BA21BE877C00CD7E60 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timer.h; path = "../../../Documents/GitHub/Project-Jurassic-Run/Timer.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +83,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0BAFAC21BE8EEE0077C0D7 /* sfml-window.framework in Frameworks */,
+				CE0BAFAE21BE8EEE0077C0D7 /* sfml-audio.framework in Frameworks */,
 				17609DC7219C7B5700F85383 /* CoreFoundation.framework in Frameworks */,
+				CE0BAFAB21BE8EEE0077C0D7 /* SFML.framework in Frameworks */,
 				17609DBC219C077D00F85383 /* libSOIL.a in Frameworks */,
+				CE0BAFAD21BE8EEE0077C0D7 /* sfml-network.framework in Frameworks */,
 				173FEF181AA63B22006CCB85 /* GLUT.framework in Frameworks */,
+				CE0BAFAA21BE8EEE0077C0D7 /* sfml-system.framework in Frameworks */,
+				CE0BAFA921BE8EEE0077C0D7 /* sfml-graphics.framework in Frameworks */,
 				173FEF161AA63B1B006CCB85 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,25 +105,27 @@
 				173FEF171AA63B22006CCB85 /* GLUT.framework */,
 				173FEF151AA63B1B006CCB85 /* OpenGL.framework */,
 				173FEF0B1AA63AC4006CCB85 /* app_main.cpp */,
+				CE72D0B921BE877C00CD7E60 /* Timer.cpp */,
+				CE72D0BA21BE877C00CD7E60 /* Timer.h */,
 				17609DB7219BF07300F85383 /* App.h */,
 				17609DB6219BF07300F85383 /* App.cpp */,
+				CE72D0B221BE3DB500CD7E60 /* Obsticle.h */,
+				CE72D0B321BE3DB500CD7E60 /* Obsticle.cpp */,
+				CE72D0AF21BE3AC300CD7E60 /* Environment.h */,
+				CE72D0B021BE3AC300CD7E60 /* Environment.cpp */,
+				CE72D0AC21BE31FA00CD7E60 /* Dino.h */,
+				CE72D0AD21BE31FA00CD7E60 /* Dino.cpp */,
 				1727D28B219145520048CB99 /* GlutApp.h */,
 				1727D28A219145520048CB99 /* GlutApp.cpp */,
-				17609DCD219CA02D00F85383 /* Timer.h */,
-				17609DCC219CA02D00F85383 /* Timer.cpp */,
 				17609DC9219C9C3E00F85383 /* AnimatedRect.cpp */,
 				17609DCA219C9C3E00F85383 /* AnimatedRect.h */,
 				17609DC1219C098400F85383 /* Rect.h */,
 				17609DC0219C098400F85383 /* Rect.cpp */,
 				17609DC4219C0DE800F85383 /* TexRect.h */,
 				17609DC3219C0DE800F85383 /* TexRect.cpp */,
-				CE3D372721AFD38A0088A15D /* cxxtimer.h */,
-				CE3D372921AFD38A0088A15D /* Score.cpp */,
-				CE3D372821AFD38A0088A15D /* Score.h */,
-				CE9766B021B7143B00CD4AD5 /* DinosaurFunctions.h */,
-				CEE0671821BC7E23009AEF57 /* DinosaurFunctions.cpp */,
-				90EB8BA921BB68FF006CD970 /* Environment.cpp */,
-				90EB8BA821BB68E3006CD970 /* Environment.h */,
+				CE72D0B521BE428700CD7E60 /* cxxtimer.h */,
+				CE72D0B721BE431B00CD7E60 /* Score.cpp */,
+				CE72D0B621BE431B00CD7E60 /* Score.h */,
 				173FEF021AA63A07006CCB85 /* Products */,
 				17609DBA219C077D00F85383 /* Frameworks */,
 			);
@@ -121,6 +144,12 @@
 			children = (
 				17609DC6219C7B5700F85383 /* CoreFoundation.framework */,
 				17609DBB219C077D00F85383 /* libSOIL.a */,
+				CE0BAFA821BE8EEE0077C0D7 /* sfml-audio.framework */,
+				CE0BAFA321BE8EEE0077C0D7 /* sfml-graphics.framework */,
+				CE0BAFA721BE8EEE0077C0D7 /* sfml-network.framework */,
+				CE0BAFA421BE8EEE0077C0D7 /* sfml-system.framework */,
+				CE0BAFA621BE8EEE0077C0D7 /* sfml-window.framework */,
+				CE0BAFA521BE8EEE0077C0D7 /* SFML.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -184,12 +213,13 @@
 				17609DB8219BF07300F85383 /* App.cpp in Sources */,
 				173FEF0C1AA63AC4006CCB85 /* app_main.cpp in Sources */,
 				17609DCB219C9C3E00F85383 /* AnimatedRect.cpp in Sources */,
+				CE72D0B121BE3AC300CD7E60 /* Environment.cpp in Sources */,
+				CE72D0B421BE3DB500CD7E60 /* Obsticle.cpp in Sources */,
+				CE72D0BB21BE877C00CD7E60 /* Timer.cpp in Sources */,
+				CE72D0AE21BE31FA00CD7E60 /* Dino.cpp in Sources */,
+				CE72D0B821BE431B00CD7E60 /* Score.cpp in Sources */,
 				1727D28C219145520048CB99 /* GlutApp.cpp in Sources */,
-				CEE0671921BC7E23009AEF57 /* DinosaurFunctions.cpp in Sources */,
 				17609DC2219C098400F85383 /* Rect.cpp in Sources */,
-				17609DCE219CA02D00F85383 /* Timer.cpp in Sources */,
-				90EB8BAA21BB68FF006CD970 /* Environment.cpp in Sources */,
-				CE3D372A21AFD38A0088A15D /* Score.cpp in Sources */,
 				17609DC5219C0DE800F85383 /* TexRect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +327,15 @@
 		173FEF091AA63A07006CCB85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+				);
 				HEADER_SEARCH_PATHS = SOIL/includes;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -312,7 +350,15 @@
 		173FEF0A1AA63A07006CCB85 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+					"$(PROJECT_DIR)/SFML\\ Frameworks",
+				);
 				HEADER_SEARCH_PATHS = SOIL/includes;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

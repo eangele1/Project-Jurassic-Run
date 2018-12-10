@@ -33,9 +33,7 @@ public:
     
     void compareAndSet();
     
-    ~Score(){
-        
-    }
+    ~Score(){}
     
 };
 

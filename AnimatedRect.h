@@ -13,13 +13,13 @@ class AnimatedRect: public TexRect, protected Timer {
     int curr_col;
     
     bool complete;
-    bool animating;
     bool loop;
     
     void advance();
     bool done();
     
 public:
+    bool animating;
     
     AnimatedRect (const char*, int, int, int, float, float, float, float);
     
