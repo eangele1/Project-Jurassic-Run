@@ -30,7 +30,7 @@ public:
     
     ~Timer();
     
-    virtual void action() = 0;
+    virtual void action(){};
 };
 
 

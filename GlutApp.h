@@ -40,7 +40,7 @@ class GlutApp {
     friend void windowToScene(float&, float&);
     
 protected:
-    GlutApp(int, char**, int = 600, int = 600, const char* title = "GLUT Application");
+    GlutApp(int, char**, int = 600, int = 600, const char* title = "Jurassic Run");
     
 public:
     void run();
