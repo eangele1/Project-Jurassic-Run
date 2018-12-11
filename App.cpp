@@ -251,20 +251,33 @@ void App::idle(){
             sound1->play();
         }
         
+        std::cout<<obsticle->advanceRate<<std::endl;
+        std::cout<<background->advanceRate<<std::endl;
+        
         if(scoreNum % 200 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 1){
             i = 1;
+            obsticle->advanceRate += 0.0001;
+            background->advanceRate += 0.0001;
         }
         else if(scoreNum % 400 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 2){
             i = 2;
+            obsticle->advanceRate += 0.0001;
+            background->advanceRate += 0.0001;
         }
         else if(scoreNum % 600 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 3){
             i = 3;
+            obsticle->advanceRate += 0.0001;
+            background->advanceRate += 0.0001;
         }
         else if(scoreNum % 800 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 4){
             i = 4;
+            obsticle->advanceRate += 0.0001;
+            background->advanceRate += 0.0001;
         }
         else if(scoreNum % 1000 == 0 && scoreNum != 0 && i < 5 && i != 0){
             i = 0;
+            obsticle->advanceRate += 0.0001;
+            background->advanceRate += 0.0001;
         }
         
         if(scoreNum == 1000){

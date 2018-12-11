@@ -336,6 +336,7 @@
 					"$(PROJECT_DIR)/SFML\\ Frameworks",
 					"$(PROJECT_DIR)/SFML\\ Frameworks",
 				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = SOIL/includes;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -359,6 +360,7 @@
 					"$(PROJECT_DIR)/SFML\\ Frameworks",
 					"$(PROJECT_DIR)/SFML\\ Frameworks",
 				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = SOIL/includes;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
