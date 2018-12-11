@@ -273,7 +273,7 @@ void App::idle(){
             runningScore->timer->start();
         }
         
-        if(scoreNum > 30){
+        if((score->timer->count<std::chrono::microseconds>()/100000) > 30){
             if(objectSwitch == 0){
                 obsticle->cactusAdvance(obsticle);
                 if(obsticle->Cactus->getX() <= -1.2){
