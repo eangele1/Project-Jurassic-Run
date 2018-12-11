@@ -1,17 +1,16 @@
 #include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <sstream>
+#include <string>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include "App.h"
 #include "Dino.h"
 #include "Environment.h"
 #include "Obsticle.h"
-#include <string>
 #include "cxxtimer.h"
-#include <fstream>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
 #include "Score.h"
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
 
 std::string hi = "HI";
 std::string curr = "CURR";
