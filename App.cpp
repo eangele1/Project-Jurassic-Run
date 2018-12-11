@@ -435,6 +435,7 @@ App::~App(){
     delete Title;
     delete gameover;
     delete score;
+    delete runningScore;
     delete music;
     delete buffer1;
     delete sound1;
