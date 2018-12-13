@@ -320,8 +320,8 @@ void App::idle(){
             secretMusic->play();
         }
         
-        obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore);
-        obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore);
+        obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic);
+        obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic);
         
     }
 
@@ -475,6 +475,7 @@ App::~App(){
     delete sound1;
     delete buffer2;
     delete sound2;
+    delete secretMusic;
 }
 
 void App::keyUp(unsigned char key, float x, float y){

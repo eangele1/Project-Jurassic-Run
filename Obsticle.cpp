@@ -18,7 +18,7 @@ void Obsticle::cactusAdvance(Obsticle* obsticle){
     obsticle->Cactus->setX(obsticle->Cactus->getX() - advanceRate);
 }
 
-void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore){
+void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic){
     
     if(Dino->DinoRun->animating == false){
         //DO NOTHING!!!
@@ -36,6 +36,9 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
+            
+            //stops the secrete music if it's playing
+            secretMusic->stop();
             
             //stops the audio file
             music->stop();
@@ -74,6 +77,9 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
             score->compareAndSet();
             hiScore = score->getHighScore();
             
+            //stops the secrete music if it's playing
+            secretMusic->stop();
+            
             //stops the audio file
             music->stop();
             
@@ -95,7 +101,7 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
     }
 }
 
-void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore){
+void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic){
     
     if(Dino->DinoRun->animating == false){
         //DO NOTHING!!!
@@ -113,6 +119,9 @@ void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
+            
+            //stops the secrete music if it's playing
+            secretMusic->stop();
             
             //stops the audio file
             music->stop();
@@ -150,6 +159,9 @@ void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn
             score->timer->stop();
             score->compareAndSet();
             hiScore = score->getHighScore();
+            
+            //stops the secrete music if it's playing
+            secretMusic->stop();
             
             //stops the audio file
             music->stop();
