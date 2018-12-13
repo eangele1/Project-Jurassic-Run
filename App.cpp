@@ -39,6 +39,9 @@ long long scoreNum;
 //Instantiate a new audio file
 sf::Music* music = new sf::Music();
 
+//Instantiate a new audio file
+sf::Music* secretMusic = new sf::Music();
+
 sf::SoundBuffer* buffer1 = new sf::SoundBuffer();
 sf::Sound* sound1 = new sf::Sound();
 
@@ -211,6 +214,9 @@ void App::idle(){
             isDead = false;
             DinoJump = true;
             
+            obsticle->advanceRate = 0.001;
+            background->advanceRate = 0.001;
+            
             score->timer->reset();
             score->timer->start();
             
@@ -250,33 +256,30 @@ void App::idle(){
             sound1->play();
         }
         
-        std::cout<<obsticle->advanceRate<<std::endl;
-        std::cout<<background->advanceRate<<std::endl;
-        
         if(scoreNum % 200 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 1){
             i = 1;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+            obsticle->advanceRate += 0.0002;
+            background->advanceRate += 0.0002;
         }
         else if(scoreNum % 400 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 2){
             i = 2;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+            obsticle->advanceRate += 0.0002;
+            background->advanceRate += 0.0002;
         }
         else if(scoreNum % 600 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 3){
             i = 3;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+            obsticle->advanceRate += 0.0002;
+            background->advanceRate += 0.0002;
         }
         else if(scoreNum % 800 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 4){
             i = 4;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+            obsticle->advanceRate += 0.0002;
+            background->advanceRate += 0.0002;
         }
         else if(scoreNum % 1000 == 0 && scoreNum != 0 && i < 5 && i != 0){
             i = 0;
-            obsticle->advanceRate += 0.0001;
-            background->advanceRate += 0.0001;
+            obsticle->advanceRate += 0.0002;
+            background->advanceRate += 0.0002;
         }
         
         if(scoreNum == 1000){
@@ -287,18 +290,34 @@ void App::idle(){
         
         if((score->timer->count<std::chrono::microseconds>()/100000) > 30){
             if(objectSwitch == 0){
-                obsticle->cactusAdvance(obsticle);
+                //obsticle->cactusAdvance(obsticle);
                 if(obsticle->Cactus->getX() <= -1.2){
                     objectSwitch = 1;
                 }
             }
             else{
-                obsticle->birdAdvance(obsticle);
+                //obsticle->birdAdvance(obsticle);
                 if(obsticle->Bird->getX() <= -1.2){
                     objectSwitch = 0;
                 }
             }
             
+        }
+        
+        if((score->timer->count<std::chrono::microseconds>()/100000) == 2000){
+            //stops the audio file
+            music->stop();
+            
+            //if music file not found, will throw error in console.
+            if (!secretMusic->openFromFile("audio/Run90s.wav")){
+                std::cout<<"Audio file not found!"<<std::endl;
+            }
+            
+            //makes audio loop (only loops from beginning to end, not at loop points)
+            secretMusic->setLoop(true);
+            
+            //plays the audio file
+            secretMusic->play();
         }
         
         obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore);
@@ -421,6 +440,9 @@ void App::keyDown(unsigned char key, float x, float y){
             end = false;
             isDead = false;
             DinoJump = true;
+            
+            obsticle->advanceRate = 0.001;
+            background->advanceRate = 0.001;
             
             score->timer->reset();
             score->timer->start();
