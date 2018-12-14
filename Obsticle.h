@@ -21,8 +21,8 @@ public:
     
     void birdAdvance(Obsticle* obsticle);
     void cactusAdvance(Obsticle* obsticle);
-    void checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic);
-    void checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic);
+    void checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic, bool& showPowerUptext);
+    void checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic, bool& showPowerUptext);
     
     ~Obsticle(){
         delete Cactus;

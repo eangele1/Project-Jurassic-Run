@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <cstdlib>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "App.h"
@@ -11,9 +12,12 @@
 #include "Obsticle.h"
 #include "cxxtimer.h"
 #include "Score.h"
+#include "PowerUp.h"
 
 std::string hi = "HI";
 std::string curr = "CURR";
+std::string powerUpText = "FIRE AWAY!!!";
+std::string powerUpTimer;
 std::string hiScore;
 std::string currScore;
 
@@ -21,6 +25,9 @@ bool isGameOn = false;
 bool isDead = false;
 bool DinoJump = false;
 bool isCrouched = false;
+
+bool powerUpAppear = false;
+bool showPowerUpText = false;
 
 int flag = 0;
 
@@ -33,8 +40,10 @@ int i = 0;
 
 int controllerFlag = 1;
 int controllerSoundHandler = 0;
+int controllerSoundHandler2 = 0;
 
 long long scoreNum;
+long long powerUpInitialTime = 5;
 
 //Instantiate a new audio file
 sf::Music* music = new sf::Music();
@@ -42,20 +51,28 @@ sf::Music* music = new sf::Music();
 //Instantiate a new audio file
 sf::Music* secretMusic = new sf::Music();
 
+//Instantiate SFX
 sf::SoundBuffer* buffer1 = new sf::SoundBuffer();
 sf::Sound* sound1 = new sf::Sound();
-
 sf::SoundBuffer* buffer2 = new sf::SoundBuffer();
 sf::Sound* sound2 = new sf::Sound();
+sf::SoundBuffer* buffer3 = new sf::SoundBuffer();
+sf::Sound* itemGet = new sf::Sound();
+sf::SoundBuffer* buffer4 = new sf::SoundBuffer();
+sf::Sound* shoot = new sf::Sound();
 
+//initialize player port of default controller connected
 int playerPort = 0;
 
+//Instantiate score keeping
 Score* score = new Score();
 Score* runningScore = new Score();
 
+//Instantiate main game objects
 Dinosaur* Dino = new Dinosaur();
 Background* background = new Background();
 Obsticle* obsticle = new Obsticle();
+PowerUp* powerUp = new PowerUp();
 
 App::App(int argc, char** argv): GlutApp(argc, argv){
     
@@ -127,16 +144,25 @@ App::App(int argc, char** argv): GlutApp(argc, argv){
     obsticle->Cactus = new TexRect("Textures/cactus.png", 1, -0.5, 0.2, 0.2);
     obsticle->Bird = new AnimatedRect("Textures/bird.png", 1, 2, 100, 1, -0.325, 0.2, 0.2);
     
+    //Power up graphics
+    powerUp->item = new TexRect("Textures/powerUp.png", 1, -0.2, 0.2, 0.2);
+    
+    powerUp->lasers = new std::vector<TexRect*>;
+    powerUp->deleteLasers = new std::vector<std::vector<TexRect*>::iterator>;
+    
     //Title and Game Over graphics
-    Title = new AnimatedRect("Textures/title.png", 7, 5, 35, -0.55, 1, 1.25, 1);
+    Title = new AnimatedRect("Textures/title.png", 7, 5, 35, -0.6, 1, 1.25, 1);
     gameover = new AnimatedRect("Textures/gameover.png", 28, 5, 15, -0.65, 0.5, 1.25, 0.5);
     
     //get high score at the beginning
     hiScore = score->getHighScore();
     
+    //initial frame advance rates
     obsticle->advanceRate = 0.001;
     background->advanceRate = 0.001;
+    powerUp->advanceRate = 0.001;
     
+    //loading sounds into memory
     if (!buffer1->loadFromFile("sound/100 Points.wav")){
         std::cout<<"Sound file not found!"<<std::endl;
     }
@@ -146,6 +172,16 @@ App::App(int argc, char** argv): GlutApp(argc, argv){
         std::cout<<"Sound file not found!"<<std::endl;
     }
     sound2->setBuffer(*buffer2);
+    
+    if (!buffer3->loadFromFile("sound/powerUpGet.wav")){
+        std::cout<<"Sound file not found!"<<std::endl;
+    }
+    itemGet->setBuffer(*buffer3);
+    
+    if (!buffer4->loadFromFile("sound/fire.wav")){
+        std::cout<<"Sound file not found!"<<std::endl;
+    }
+    shoot->setBuffer(*buffer4);
 }
 
 //used to write text in the window
@@ -158,10 +194,13 @@ void drawString (void * font, std::string *s, float x, float y){
 
 void App::idle(){
     
+    //updates gamepad connectivity all the time
     sf::Joystick::update();
     
+    //gets position of joystick axis.
     float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
     
+    //A Button
     if(sf::Joystick::isButtonPressed(playerPort, 1) && controllerSoundHandler == 0){
         if(isGameOn == true){
             DinoJump = true;
@@ -173,6 +212,20 @@ void App::idle(){
         controllerSoundHandler = 0;
     }
     
+    //B Button
+    if(sf::Joystick::isButtonPressed(playerPort, 0) && controllerSoundHandler2 == 0){
+        if(showPowerUpText){
+            TexRect* laser = new TexRect("Textures/laser.png", Dino->DinoStand->getX() + 0.15, Dino->DinoRun->getY(), 0.2, 0.1);
+            powerUp->lasers->push_back(laser);
+            shoot->play();
+            controllerSoundHandler2 = 1;
+        }
+    }
+    else if(!sf::Joystick::isButtonPressed(playerPort, 0) && controllerSoundHandler2 == 1){
+        controllerSoundHandler2 = 0;
+    }
+    
+    //"Joysticks" or rather up and down buttons
     if(y == 100){
         if(isGameOn == true && controllerFlag == 1){
             isCrouched = true;
@@ -216,6 +269,7 @@ void App::idle(){
             
             obsticle->advanceRate = 0.001;
             background->advanceRate = 0.001;
+            powerUp->advanceRate = 0.001;
             
             score->timer->reset();
             score->timer->start();
@@ -225,6 +279,7 @@ void App::idle(){
             
             obsticle->Bird->setX(1);
             obsticle->Cactus->setX(1);
+            powerUp->item->setX(1);
             
             obsticle->Bird->playLoop();
             Dino->DinoRun->playLoop();
@@ -234,6 +289,7 @@ void App::idle(){
         
     }
     
+    //IMPORTANT FUNCTION!!! -> displays frames all the time in the game
     glutPostRedisplay();
     
     score->setCurrScore(isGameOn);
@@ -241,7 +297,12 @@ void App::idle(){
     
     scoreNum = runningScore->timer->count<std::chrono::microseconds>();
     
+    powerUpTimer = std::to_string(powerUpInitialTime - powerUp->timer->count<std::chrono::seconds>());
+    
     scoreNum /= 100000;
+    
+    srand(static_cast<unsigned int>(time(0)));
+    int randomNum = rand() % 2;
     
     if(intro == false){
         Title->playOnce();
@@ -260,48 +321,83 @@ void App::idle(){
             i = 1;
             obsticle->advanceRate += 0.0002;
             background->advanceRate += 0.0002;
+            powerUp->advanceRate += 0.0002;
         }
         else if(scoreNum % 400 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 2){
             i = 2;
             obsticle->advanceRate += 0.0002;
             background->advanceRate += 0.0002;
+            powerUp->advanceRate += 0.0002;
         }
         else if(scoreNum % 600 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 3){
             i = 3;
             obsticle->advanceRate += 0.0002;
             background->advanceRate += 0.0002;
+            powerUp->advanceRate += 0.0002;
         }
         else if(scoreNum % 800 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 4){
             i = 4;
             obsticle->advanceRate += 0.0002;
             background->advanceRate += 0.0002;
+            powerUp->advanceRate += 0.0002;
         }
         else if(scoreNum % 1000 == 0 && scoreNum != 0 && i < 5 && i != 0){
             i = 0;
             obsticle->advanceRate += 0.0002;
             background->advanceRate += 0.0002;
+            powerUp->advanceRate += 0.0002;
+        }
+        
+        if(powerUp->timer->count<std::chrono::seconds>() == 5){
+            powerUp->timer->stop();
+            powerUp->timer->reset();
+            showPowerUpText = false;
+        }
+        
+        if((score->timer->count<std::chrono::microseconds>()/100000) > 30){
+            
+            if(scoreNum % 150 == 0 && scoreNum != 0){
+                powerUpAppear = true;
+            }
+            
+            if (powerUpAppear == true && obsticle->Cactus->getX() <= -1.2 && obsticle->Bird->getX() <= -1.2) {
+                
+                objectSwitch = 2;
+                
+                powerUp->powerUpAdvance(powerUp);
+                
+                if(powerUp->item->getX() <= -1.2){
+                    objectSwitch = 0;
+                    powerUpAppear = false;
+                }
+                
+                if(powerUp->checkPowerUpGet(Dino, powerUp)){
+                    objectSwitch = 0;
+                    powerUpAppear = false;
+                    showPowerUpText = true;
+                    itemGet->play();
+                }
+            }
+            
+            if(objectSwitch == 0){
+                obsticle->cactusAdvance(obsticle);
+                if(obsticle->Cactus->getX() <= -1.2){
+                    objectSwitch = randomNum;
+                }
+            }
+            else if (objectSwitch == 1){
+                obsticle->birdAdvance(obsticle);
+                if(obsticle->Bird->getX() <= -1.2){
+                    objectSwitch = randomNum;
+                }
+            }
+            
         }
         
         if(scoreNum == 1000){
             runningScore->timer->stop();
             runningScore->timer->reset();
             runningScore->timer->start();
-        }
-        
-        if((score->timer->count<std::chrono::microseconds>()/100000) > 30){
-            if(objectSwitch == 0){
-                //obsticle->cactusAdvance(obsticle);
-                if(obsticle->Cactus->getX() <= -1.2){
-                    objectSwitch = 1;
-                }
-            }
-            else{
-                //obsticle->birdAdvance(obsticle);
-                if(obsticle->Bird->getX() <= -1.2){
-                    objectSwitch = 0;
-                }
-            }
-            
         }
         
         if((score->timer->count<std::chrono::microseconds>()/100000) == 2000){
@@ -316,15 +412,28 @@ void App::idle(){
             //makes audio loop (only loops from beginning to end, not at loop points)
             secretMusic->setLoop(true);
             
+            secretMusic->setVolume(70);
+            
             //plays the audio file
             secretMusic->play();
         }
         
-        obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic);
-        obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic);
+        obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic, showPowerUpText);
+        obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic, showPowerUpText);
         
     }
-
+    
+    for(std::vector<TexRect*>::iterator laserIterator = powerUp->lasers->begin(); laserIterator != powerUp->lasers->end(); laserIterator++){
+        
+        if(powerUp->checkLaserHit(powerUp, obsticle, laserIterator, objectSwitch) || (*laserIterator)->getX() >= 1){
+            powerUp->lasers->erase(laserIterator);
+            break;
+        }
+        else{
+            (*laserIterator)->setX((*laserIterator)->getX() + 0.005);
+        }
+    }
+    
     if(DinoJump){
         Dino->jump(Dino, flag, DinoJump);
     }
@@ -335,6 +444,11 @@ void App::draw() {
     
     //gives the text the color white
     glColor3f(1, 1, 1);
+    
+    if(showPowerUpText && isGameOn){
+        drawString(GLUT_BITMAP_TIMES_ROMAN_24, &powerUpText, -0.2, .25);
+        drawString(GLUT_BITMAP_TIMES_ROMAN_24, &powerUpTimer, 0, .1);
+    }
     
     drawString(GLUT_BITMAP_TIMES_ROMAN_24, &hi, .1, .75);
     
@@ -367,6 +481,11 @@ void App::draw() {
     
     obsticle->Cactus->draw(0.15);
     obsticle->Bird->draw(0.15);
+    powerUp->item->draw(0.15);
+    
+    for(std::vector<TexRect*>::iterator laserIterator = powerUp->lasers->begin(); laserIterator != powerUp->lasers->end(); laserIterator++){
+        (*laserIterator)->draw(0.15);
+    }
     
     if(isGameOn == false){
         
@@ -401,6 +520,14 @@ void App::keyDown(unsigned char key, float x, float y){
     if(key == '9'){
         //sets audio volume. Default is at 70; max is at 100.
         music->setVolume(70);
+    }
+    
+    if(key == 'm'){
+        if(showPowerUpText){
+            TexRect* laser = new TexRect("Textures/laser.png", Dino->DinoStand->getX() + 0.15, Dino->DinoRun->getY(), 0.2, 0.1);
+            powerUp->lasers->push_back(laser);
+            shoot->play();
+        }
     }
     
     if (key == 'b') {
@@ -443,6 +570,7 @@ void App::keyDown(unsigned char key, float x, float y){
             
             obsticle->advanceRate = 0.001;
             background->advanceRate = 0.001;
+            powerUp->advanceRate = 0.001;
             
             score->timer->reset();
             score->timer->start();
@@ -452,6 +580,7 @@ void App::keyDown(unsigned char key, float x, float y){
             
             obsticle->Bird->setX(1);
             obsticle->Cactus->setX(1);
+            powerUp->item->setX(1);
             
             obsticle->Bird->playLoop();
             Dino->DinoRun->playLoop();
@@ -475,7 +604,12 @@ App::~App(){
     delete sound1;
     delete buffer2;
     delete sound2;
+    delete buffer3;
+    delete itemGet;
+    delete buffer4;
+    delete shoot;
     delete secretMusic;
+    delete powerUp;
 }
 
 void App::keyUp(unsigned char key, float x, float y){

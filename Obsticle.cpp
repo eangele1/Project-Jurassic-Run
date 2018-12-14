@@ -18,7 +18,7 @@ void Obsticle::cactusAdvance(Obsticle* obsticle){
     obsticle->Cactus->setX(obsticle->Cactus->getX() - advanceRate);
 }
 
-void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic){
+void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic, bool& showPowerUptext){
     
     if(Dino->DinoRun->animating == false){
         //DO NOTHING!!!
@@ -28,6 +28,9 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
             isGameOn = false;
             DinoJump = false;
             isDead = true;
+            showPowerUptext = false;
+            
+            Dino->fallRate = 0.0015;
             Dino->DinoRun->pause();
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
@@ -68,6 +71,9 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
             isGameOn = false;
             DinoJump = false;
             isDead = true;
+            showPowerUptext = false;
+            
+            Dino->fallRate = 0.0015;
             Dino->DinoRun->pause();
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
@@ -101,7 +107,7 @@ void Obsticle::checkBirdHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, 
     }
 }
 
-void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic){
+void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn, bool& DinoJump, bool& isDead, bool& end, AnimatedRect* gameover, Score* score, std::string& hiScore, sf::Music* music, Score* runningScore, sf::Music* secretMusic, bool& showPowerUptext){
     
     if(Dino->DinoRun->animating == false){
         //DO NOTHING!!!
@@ -111,6 +117,9 @@ void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn
             isGameOn = false;
             DinoJump = false;
             isDead = true;
+            showPowerUptext = false;
+            
+            Dino->fallRate = 0.0015;
             Dino->DinoRun->pause();
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
@@ -151,6 +160,9 @@ void Obsticle::checkCactusHit(Dinosaur* Dino, Obsticle* obsticle, bool& isGameOn
             isGameOn = false;
             DinoJump = false;
             isDead = true;
+            showPowerUptext = false;
+            
+            Dino->fallRate = 0.0015;
             Dino->DinoRun->pause();
             Dino->DinoCrouch->pause();
             Dino->DinoDead->setY(Dino->DinoRun->getY());
