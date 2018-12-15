@@ -1,4 +1,4 @@
-# Project Jurassic Run
+# Jurassic Run
 
 When running the program, press spacebar to start the game.
 
