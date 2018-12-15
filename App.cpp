@@ -14,6 +14,7 @@
 #include "Score.h"
 #include "PowerUp.h"
 
+//strings that display in game using the drawString() function
 std::string hi = "HI";
 std::string curr = "CURR";
 std::string powerUpText = "FIRE AWAY!!!";
@@ -21,28 +22,42 @@ std::string powerUpTimer;
 std::string hiScore;
 std::string currScore;
 
+//bool and int variables are mainly game control to check and set specific parts of the game
+//isGameOn controls when the game will run everything or not
 bool isGameOn = false;
+//isDead controls the Dino sprite for when the Dino dies
 bool isDead = false;
+//DinoJump controls if the Dino jumps or not when the spacebar is pressed
 bool DinoJump = false;
+//isCrouched controls the Dino sprite for when the Dino crouches to avoid the bird
 bool isCrouched = false;
 
+//powerUpAppear controls whether or not the item to shoot lasers appears
 bool powerUpAppear = false;
+//showPowerUpText controls whether or not the power up is attained and the timer text shows up
 bool showPowerUpText = false;
 
+//flag used to control Dino jump physics
 int flag = 0;
 
+//objectSwitch used to control the appearence of the obsticles
 int objectSwitch = 0;
 
+//intro and end flags used to control when the title and gameover graphics appear respectively
 bool intro = false;
 bool end = false;
 
+//i iterator used to control background changes
 int i = 0;
 
+//controllerFlag and controllerSoundHandler 1 & 2 restrict gamepad button repeats and replicates KeyUp to switch between DinoRun and DinoCrouch
 int controllerFlag = 1;
 int controllerSoundHandler = 0;
 int controllerSoundHandler2 = 0;
 
+//scoreNum used to store time from runningScore()
 long long scoreNum;
+//powerUpInitialTime stores how much time is given for powerup
 long long powerUpInitialTime = 5;
 
 //Instantiate a new audio file
@@ -90,10 +105,14 @@ App::App(int argc, char** argv): GlutApp(argc, argv){
     //plays the audio file
     music->play();
     
+    //sets volume of first sound effect
     sound1->setVolume(50);
     
+    //for loop to initially check if there's a gamepad connected (up to 8 ports available at a time)
     for(int i = 0; i < 8; i++){
+        //calls joystick update funciton to check if gamepad is connected
         sf::Joystick::update();
+        //if connected, then assigns current connected port to playerport and makes gamepad default controller, and then displays controller information on the console
         if(sf::Joystick::isConnected(i)){
             std::cout << "Controller port " << i + 1 << " is connected." <<std::endl;
             
@@ -243,6 +262,7 @@ void App::idle(){
         }
     }
     
+    //"Start" Button
     if(sf::Joystick::isButtonPressed(playerPort, 9)){
         
         if(isGameOn == false){
@@ -260,31 +280,39 @@ void App::idle(){
             //plays the audio file
             music->play();
             
+            //sets background iterator to 0 (first background)
             i = 0;
             
+            //sets bool controllers to false
             isCrouched = false;
             end = false;
             isDead = false;
             DinoJump = true;
             
+            //resets objects advance rate for how fast they move on the screen
             obsticle->advanceRate = 0.001;
             background->advanceRate = 0.001;
             powerUp->advanceRate = 0.001;
             
+            //resets and starts score stopwatch
             score->timer->reset();
             score->timer->start();
             
+            //resets and starts runningScore stopwatch
             runningScore->timer->reset();
             runningScore->timer->start();
             
+            //resets object positions
             obsticle->Bird->setX(1);
             obsticle->Cactus->setX(1);
             powerUp->item->setX(1);
             
+            //starts bird and Dino run animations to start at the beginning
             obsticle->Bird->playLoop();
             Dino->DinoRun->playLoop();
         }
         
+        //sets isGameOn to true
         isGameOn = true;
         
     }
@@ -292,31 +320,42 @@ void App::idle(){
     //IMPORTANT FUNCTION!!! -> displays frames all the time in the game
     glutPostRedisplay();
     
+    //sets the current score to the screen as long as isGameOn is true
     score->setCurrScore(isGameOn);
+    //gets current score to display for screen
     currScore = score->getCurrScore();
     
+    //gets timer number from runningScore and sets it to the score number
     scoreNum = runningScore->timer->count<std::chrono::microseconds>();
     
+    //gets timer number from power up and displays it on screen
     powerUpTimer = std::to_string(powerUpInitialTime - powerUp->timer->count<std::chrono::seconds>());
     
+    //divide scoreNum by this number to display correct number
     scoreNum /= 100000;
     
+    //generates a random number for use with the objectSwitch variable
     srand(static_cast<unsigned int>(time(0)));
     int randomNum = rand() % 2;
     
+    //first time booting up the game, title appears, then disappears after game starts
     if(intro == false){
         Title->playOnce();
         intro = true;
     }
     
+    //if and only if isGameOn is true, runs everything inside the if statement
     if(isGameOn == true){
         
+        //moves background
         background->advance(background);
         
+        //makes sound indicating that you've reached 100 points
         if(scoreNum % 100 == 0 && scoreNum != 0){
             sound1->play();
         }
         
+        //if else if statement changes background every 200 points, and after 5 background changes it goes back to the first one
         if(scoreNum % 200 == 0 && scoreNum != 0 && scoreNum % 1000 != 0 && i < 1){
             i = 1;
             obsticle->advanceRate += 0.0002;
@@ -348,29 +387,37 @@ void App::idle(){
             powerUp->advanceRate += 0.0002;
         }
         
+        //checks to see if power up timer has reached 5 seconds
         if(powerUp->timer->count<std::chrono::seconds>() == 5){
             powerUp->timer->stop();
             powerUp->timer->reset();
             showPowerUpText = false;
         }
         
+        //checks to see if main score is greater than 30; if so, then it will display the objects
         if((score->timer->count<std::chrono::microseconds>()/100000) > 30){
             
+            //makes power up appear after 150 points
             if(scoreNum % 150 == 0 && scoreNum != 0){
                 powerUpAppear = true;
             }
             
+            //waits for bird and cactus to appear at least once and reach the other end of the screen. Then the power up appears.
             if (powerUpAppear == true && obsticle->Cactus->getX() <= -1.2 && obsticle->Bird->getX() <= -1.2) {
                 
+                //changes object switch to not make obsticles appear, but only the power up.
                 objectSwitch = 2;
                 
+                //moves power up
                 powerUp->powerUpAdvance(powerUp);
                 
+                //if power up reaches certain distance, then it's gone
                 if(powerUp->item->getX() <= -1.2){
                     objectSwitch = 0;
                     powerUpAppear = false;
                 }
                 
+                //if Dino touches power up, then power up is on and Dino can shoot lasers
                 if(powerUp->checkPowerUpGet(Dino, powerUp)){
                     objectSwitch = 0;
                     powerUpAppear = false;
@@ -379,6 +426,7 @@ void App::idle(){
                 }
             }
             
+            //if object switch is 0, switch to cactus, else if object switch is 1, switch to bird
             if(objectSwitch == 0){
                 obsticle->cactusAdvance(obsticle);
                 if(obsticle->Cactus->getX() <= -1.2){
@@ -394,6 +442,7 @@ void App::idle(){
             
         }
         
+        //if scoreNum is equal to 1000, then reset and start again to 0.
         if(scoreNum == 1000){
             runningScore->timer->stop();
             runningScore->timer->reset();
@@ -418,11 +467,13 @@ void App::idle(){
             secretMusic->play();
         }
         
+        //obsticles check to see if the Dino has hit any of them. If so, then manipulate game control variables and execute commands.
         obsticle->checkBirdHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic, showPowerUpText);
         obsticle->checkCactusHit(Dino, obsticle, isGameOn, DinoJump, isDead, end, gameover, score, hiScore, music, runningScore, secretMusic, showPowerUpText);
         
     }
     
+    //iterates through each laser shot and checks if they're off screen or hitting an obsticle, else the lasers are only advancing
     for(std::vector<TexRect*>::iterator laserIterator = powerUp->lasers->begin(); laserIterator != powerUp->lasers->end(); laserIterator++){
         
         if(powerUp->checkLaserHit(powerUp, obsticle, laserIterator, objectSwitch) || (*laserIterator)->getX() >= 1){
@@ -434,6 +485,7 @@ void App::idle(){
         }
     }
     
+    //Dino jump command when player presses " "
     if(DinoJump){
         Dino->jump(Dino, flag, DinoJump);
     }
@@ -531,6 +583,7 @@ void App::keyDown(unsigned char key, float x, float y){
     }
     
     if (key == 'b') {
+        //changes DinoRun to DinoCrouch, and accelerates fall rate when Dino is jumping
         if(isGameOn == true){
             isCrouched = true;
             Dino->fallRate = 0.003;
@@ -592,6 +645,7 @@ void App::keyDown(unsigned char key, float x, float y){
 
 App::~App(){
     std::cout << "Exiting..." << std::endl;
+    //deleting everything from the heap
     delete Dino;
     delete background;
     delete obsticle;
@@ -614,7 +668,7 @@ App::~App(){
 
 void App::keyUp(unsigned char key, float x, float y){
     if (key == 'b') {
-        
+        //changes DinoCrouch to DinoRun
         if(isGameOn == true){
             isCrouched = false;
             Dino->fallRate = 0.0015;
